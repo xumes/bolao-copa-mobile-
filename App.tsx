@@ -1,24 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import { NativeBaseProvider } from 'native-base';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { NativeBaseProvider, Text, Center } from 'native-base';
 
 export default function App() {
   return (
     <NativeBaseProvider>
-      <View style={styles.container}>
-        <Text>FIFA World Cup!</Text>
+      <Center flex={1} bgColor="black" alignItems="center" justifyContent="center">
+        <Text color="white" fontSize={24}>FIFA World Cup!</Text>
         <StatusBar style="auto" />
-      </View>
+      </Center>
     </NativeBaseProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
