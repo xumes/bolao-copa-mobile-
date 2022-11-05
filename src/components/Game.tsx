@@ -48,6 +48,7 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
       borderBottomColor="yellow.500"
       mb={3}
       p={4}
+      pb={24}
     >
       <Text color="gray.100" fontFamily="heading" fontSize="sm">
         {getName(data.firstTeamCountryCode)} vs. {getName(data.secondTeamCountryCode)}
