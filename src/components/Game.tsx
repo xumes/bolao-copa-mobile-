@@ -2,6 +2,8 @@ import React from 'react';
 import { Button, HStack, Text, useTheme, VStack } from 'native-base';
 import { X, Check } from 'phosphor-react-native';
 import { getName } from 'country-list';
+import dayjs from 'dayjs'
+import ptBR from 'dayjs/locale/pt-br'
 
 import { Team } from './Team';
 
@@ -16,9 +18,12 @@ interface GuessProps {
 
 export interface GameProps {
   id: string;
+  date: string;
   firstTeamCountryCode: string;
   secondTeamCountryCode: string;
   guess: null | GuessProps;
+  firstTeamPoints: string;
+  secondTeampoints: string;
 };
 
 interface Props {
@@ -30,6 +35,8 @@ interface Props {
 
 export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessConfirm }: Props) {
   const { colors, sizes } = useTheme();
+
+  const when = dayjs(data.date).locale(ptBR).format("DD [de] MMMM [de] YYYY [as] HH:mm[h]")
 
   return (
     <VStack
@@ -47,7 +54,7 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
       </Text>
 
       <Text color="gray.200" fontSize="xs">
-        22 de Novembro de 2022 às 16:00h
+       {when}
       </Text>
 
       <HStack mt={4} w="full" justifyContent="space-between" alignItems="center">
@@ -55,6 +62,7 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
           code={data.firstTeamCountryCode}
           position="right"
           onChangeText={setFirstTeamPoints}
+          value={String(data.guess?.firstTeamPoints || "")}
         />
 
         <X color={colors.gray[300]} size={sizes[6]} />
@@ -63,6 +71,7 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
           code={data.secondTeamCountryCode}
           position="left"
           onChangeText={setSecondTeamPoints}
+          value={String(data.guess?.secondTeamPoints || "")}
         />
       </HStack>
 
