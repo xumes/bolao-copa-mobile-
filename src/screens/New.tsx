@@ -55,7 +55,7 @@ export function New() {
                 <Logo />
 
                 <Heading fontFamily="heading" color="white" fontSize="xl" my={8} textAlign="center">
-                    Crie seu próprio bolão da a copa {'\n'}
+                    Crie seu próprio bolão da copa {'\n'}
                     e compartilhe entre amigos!
                 </Heading>
 
