@@ -38,6 +38,8 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
 
   const when = dayjs(data.date).locale(ptBR).format("DD [de] MMMM [de] YYYY [as] HH:mm[h]")
 
+  const hasGameStarted = (new Date(data.date) <= new Date())
+
   return (
     <VStack
       w="full"
@@ -77,7 +79,19 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
       </HStack>
 
       {
-        !data.guess &&
+        !data.guess && hasGameStarted &&
+        <Button size="xs" w="full" bgColor="red.200" mt={4} onPress={() => {}}>
+          <HStack alignItems="center">
+            <Text color="black" fontSize="xs" fontFamily="heading" mr={3}>
+              Você só pode dar palpite antes do jogo começar
+            </Text>
+
+          </HStack>
+        </Button>
+      }
+
+      {
+        !data.guess && !hasGameStarted &&
         <Button size="xs" w="full" bgColor="green.500" mt={4} onPress={onGuessConfirm}>
           <HStack alignItems="center">
             <Text color="white" fontSize="xs" fontFamily="heading" mr={3}>
@@ -85,6 +99,18 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
             </Text>
 
             <Check color={colors.white} size={sizes[4]} />
+          </HStack>
+        </Button>
+      }
+
+{
+        data.guess &&
+        <Button size="xs" w="full" bgColor="green.200" mt={4} onPress={() => {}}>
+          <HStack alignItems="center">
+            <Text color="black" fontSize="xs" fontFamily="heading" mr={3}>
+              Palpite realizado, boa sorte!
+            </Text>
+
           </HStack>
         </Button>
       }
